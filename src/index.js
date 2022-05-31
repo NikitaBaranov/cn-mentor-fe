@@ -1,11 +1,10 @@
 import React from 'react';
-import './index.css';
 import {createRoot} from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 
-// Importing the Bootstrap CSS
+import './index.css';
 import 'bootswatch/dist/cyborg/bootstrap.min.css';
 
 const container = document.getElementById('root');
