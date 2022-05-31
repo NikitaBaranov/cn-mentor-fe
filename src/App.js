@@ -60,7 +60,7 @@ const App = () => {
     const renderPage = () => {
         switch (page) {
             case "Students":
-                return (<Students students={students} courses={courses}/>);
+                return (<Students students={students} courses={courses} getAllStudents={getAllStudents}/>);
             case "Courses":
                 return (<Courses courses={courses}/>);
             default:
@@ -91,7 +91,7 @@ const App = () => {
                             </li>
                             {isLoading ?
                                 <li className="nav-item">
-                                    <a className="nav-link text-warning" >
+                                    <a className="nav-link text-warning">
                                         Updating ...
                                     </a>
                                 </li>

@@ -1,8 +1,9 @@
 import React from 'react';
-import {FaGithub} from 'react-icons/fa';
+import {FaGithub, FaTrashAlt} from 'react-icons/fa';
 import SectionComponent from "./SectionComponent";
+import {deleteStudent} from "../services/Students";
 
-const StudentCardComponent = ({student, courses}) => {
+const StudentCardComponent = ({student, courses, getAllStudents}) => {
 
     // console.log(student)
 
@@ -14,13 +15,17 @@ const StudentCardComponent = ({student, courses}) => {
                     <a href={`https://platform.codingnomads.co/learn/user/profile.php?id=${student.id}`}
                        target="_blank">
                         {student.name} ({student.id})
-                    </a> | <FaGithub/> | <a>GoogleDoc</a>
+                    </a> <button type="button"
+                                 className="btn btn-outline-danger btn-sm"
+                                 onClick={() => deleteStudent(student.id, getAllStudents, () => console.log("failed"))}>
+                            <FaTrashAlt/>
+                         </button> | <FaGithub/> | <a>GoogleDoc</a>
                 </span>
                 </div>
 
                 <table className="table table-hover">
                     <tbody>
-                    {Object.keys(student.coursesProgress).map(courseProgress => (
+                    {student.coursesProgress && Object.keys(student.coursesProgress).map(courseProgress => (
                         <tr key={student.coursesProgress[courseProgress].courseId} className="table-active">
                             <td>
                                 <div className="text-secondary">
@@ -32,31 +37,14 @@ const StudentCardComponent = ({student, courses}) => {
                                 </div>
                             </td>
                             <td>
-                                {student.coursesProgress[courseProgress].sections.map(section => (
-                                    <SectionComponent section={section}/>
+                                {student.coursesProgress[courseProgress].sections && student.coursesProgress[courseProgress].sections.map(section => (
+                                    <SectionComponent key={section.id} section={section}/>
                                 ))}
                             </td>
                         </tr>
                     ))}
                     </tbody>
                 </table>
-
-                {/*{Object.keys(student.coursesProgress).map(courseProgress => (*/}
-                {/*    <div key={student.coursesProgress[courseProgress].courseId}>*/}
-                {/*        <div className="text-secondary">*/}
-                {/*            <a href={`https://platform.codingnomads.co/learn/report/outline/user.php?id=${student.id}&course=${student.coursesProgress[courseProgress].courseId}&mode=outline`}*/}
-                {/*               target="_blank">*/}
-                {/*                {courses[student.coursesProgress[courseProgress].courseId].name}*/}
-                {/*            </a>*/}
-                {/*            ({student.coursesProgress[courseProgress].courseId})*/}
-                {/*        </div>*/}
-                {/*        <div>{student.coursesProgress[courseProgress].sections.map(section => (*/}
-                {/*            <SectionComponent section={section}/>*/}
-                {/*        ))}*/}
-                {/*        </div>*/}
-                {/*        <br/>*/}
-                {/*    </div>*/}
-                {/*))}*/}
             </div>
             <br/>
         </>

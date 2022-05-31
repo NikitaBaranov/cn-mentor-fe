@@ -6,15 +6,6 @@ import reportWebVitals from './reportWebVitals';
 
 // Importing the Bootstrap CSS
 import 'bootswatch/dist/cyborg/bootstrap.min.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );
-// React 18
 
 const container = document.getElementById('root');
 const root = createRoot(container);
