@@ -11,7 +11,8 @@ const SectionComponent = ({section}) => {
     useEffect(() => {
         const stats = calculateStats(section.topics)
         setStats(stats)
-        setCollapse(stats["green"] === stats["total"] || stats["grey"] === stats["total"])
+        // setCollapse(stats["green"] === stats["total"] || stats["grey"] === stats["total"])
+        setCollapse(stats["red"] === 0 && stats["yellow"] === 0)
     }, []);
 
     // console.log(section)

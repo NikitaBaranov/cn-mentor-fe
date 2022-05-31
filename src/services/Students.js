@@ -67,7 +67,7 @@ export const deleteStudent = (studentId, onSuccess, onError) => {
             }
         })
         .then(() => {
-            console.log("addStudent", "end");
+            console.log("deleteStudent", "end");
             onSuccess()
         })
         .catch(e => {

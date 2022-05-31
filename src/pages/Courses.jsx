@@ -1,16 +1,17 @@
 import React from 'react';
-import StudentCardComponent from "../components/StudentCardComponent";
 import CourseCardComponent from "../components/CourseCardComponent";
+import CourseAddComponent from "../components/CourseAddComponent";
 
-const Courses = ({courses}) => {
-    // console.log("Courses", courses)
-
+const Courses = ({courses, getAllCourses}) => {
     return (
         <>
             {Object.keys(courses).map(course => (
-                    <CourseCardComponent key={course} course={courses[course]}/>
+                    <CourseCardComponent
+                        key={course}
+                        course={courses[course]}/>
                 )
             )}
+            <CourseAddComponent getAllCourses={getAllCourses}/>
         </>
     )
 }

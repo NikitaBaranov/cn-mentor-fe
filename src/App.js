@@ -1,20 +1,18 @@
 import React, {useEffect, useState} from 'react';
-
 import Container from 'react-bootstrap/Container';
-
-
-import './App.css';
 import Students from "./pages/Students";
 import Courses from "./pages/Courses";
 import {getStudents, updateStudents} from "./services/Students";
 import {getCourses} from "./services/Courses";
+import {Link, Route, Routes} from "react-router-dom";
+
+import './App.css';
+import Progress from "./pages/Progress";
 
 const App = () => {
     const [students, setStudents] = useState([]);
     const [courses, setCourses] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-
-    const [page, setPage] = useState("Students")
 
     const updateAllStudents = () => {
         setIsLoading(true)
@@ -57,22 +55,11 @@ const App = () => {
         getAllCourses();
     }, []);
 
-    const renderPage = () => {
-        switch (page) {
-            case "Students":
-                return (<Students students={students} courses={courses} getAllStudents={getAllStudents}/>);
-            case "Courses":
-                return (<Courses courses={courses}/>);
-            default:
-                return (<></>)
-        }
-    }
-
     return (
         <>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="#">cnMentor</a>
+                    <a className="navbar-brand" href="/">cnMentor</a>
                     {/*<button className="navbar-toggler" type="button" data-bs-toggle="collapse"*/}
                     {/*        data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false"*/}
                     {/*        aria-label="Toggle navigation">*/}
@@ -82,56 +69,52 @@ const App = () => {
                     <div className="collapse navbar-collapse" id="navbarColor02">
                         <ul className="navbar-nav me-auto">
                             <li className="nav-item">
-                                <a className="nav-link active" href="#" onClick={() => setPage("Students")}>Students
+                                <Link to="/" className="nav-link active text-primary">
+                                    Progress
                                     <span className="visually-hidden">(current)</span>
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#" onClick={() => setPage("Courses")}>Courses</a>
+                                <Link to="/students" className="nav-link text-success">
+                                    Students
+                                </Link>
                             </li>
-                            {isLoading ?
-                                <li className="nav-item">
+                            <li className="nav-item">
+                                <Link to="/courses" className="nav-link text-info">
+                                    Courses
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                {isLoading ?
                                     <a className="nav-link text-warning">
                                         Updating ...
                                     </a>
-                                </li>
-                                :
-                                <li className="nav-item">
-
+                                    :
                                     <a className="nav-link text-danger"
                                        href="#"
                                        onClick={() => updateAllStudents()}
-                                    >
-                                        Update All</a>
-                                </li>
-                            }
-                            {/*<li className="nav-item">*/}
-                            {/*    <a className="nav-link" href="#">Pricing</a>*/}
-                            {/*</li>*/}
-                            {/*<li className="nav-item">*/}
-                            {/*    <a className="nav-link" href="#">About</a>*/}
-                            {/*</li>*/}
-
-                            {/*<li className="nav-item dropdown">*/}
-                            {/*    <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"*/}
-                            {/*       aria-haspopup="true" aria-expanded="false">Dropdown</a>*/}
-                            {/*    <div className="dropdown-menu">*/}
-                            {/*        <a className="dropdown-item" href="#">Action</a>*/}
-                            {/*        <a className="dropdown-item" href="#">Another action</a>*/}
-                            {/*        <a className="dropdown-item" href="#">Something else here</a>*/}
-                            {/*        <div className="dropdown-divider"></div>*/}
-                            {/*        <a className="dropdown-item" href="#">Separated link</a>*/}
-                            {/*    </div>*/}
-                            {/*</li>*/}
+                                    >Update All</a>
+                                }
+                            </li>
                         </ul>
                     </div>
                 </div>
             </nav>
-            <Container>
-                {renderPage()}
-                {/*<Container className="p-5 mb-4 bg-dark rounded-3">*/}
-                {/*<Students students={students} courses={courses}/>*/}
-                {/*</Container>*/}
+            <Container className={"mt-3"}>
+                <Routes>
+                    <Route
+                        path="/"
+                        element={<Progress students={students} courses={courses} getAllStudents={getAllStudents}/>}
+                    />
+                    <Route
+                        path="/courses"
+                        element={<Courses courses={courses} getAllCourses={getAllCourses}/>}
+                    />
+                    <Route
+                        path="/students"
+                        element={<Students students={students} courses={courses} getAllStudents={getAllStudents}/>}
+                    />
+                </Routes>
             </Container>
         </>
     )

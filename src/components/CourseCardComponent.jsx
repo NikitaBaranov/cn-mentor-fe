@@ -1,41 +1,20 @@
 import React from 'react';
+import {FaExternalLinkAlt} from "react-icons/fa";
 
-const StudentCardComponent = ({course}) => {
-    // const size = "5";
-    // const display = ["PAGE", "VIDEOTIME", "URL"];
-
-    // console.log(course)
-
-    // const todayMinus = (days) => {
-    //     const today = new Date();
-    //     return new Date(today.getFullYear(), today.getMonth(), today.getDate() - days);
-    // }
-    //
-    // const handleTopics = (topic) => {
-    //     if (display.includes(topic.type)) {
-    //         let color = "grey"
-    //         if (topic.date) {
-    //             const topicDate = new Date(topic.date)
-    //             if (topicDate > todayMinus(3) ){
-    //                 color = "red"
-    //             } else if(topicDate > todayMinus(7) ){
-    //                 color = "yellow"
-    //             } else {
-    //                 color = "green"
-    //             }
-    //         }
-    //         return (<FaCircle key={topic.order} color={color} size={size}/>)
-    //     }
-    // }
-
+const CourseCardComponent = ({course}) => {
     return (
         <>
-            <p key={course.id}>
-                <a href={`https://platform.codingnomads.co/learn/course/view.php?id=${course.id}`}
-                   target="_blank">{course.name}</a>
-            </p>
+            <div key={course.id} className={"card border-info m-2"}>
+                <div className="card-header text-info">
+                    {course.name} ({course.id})
+                </div>
+                <div className="card-body">
+                    <a href={`https://platform.codingnomads.co/learn/course/view.php?id=${course.id}`}
+                       target="_blank"><FaExternalLinkAlt/></a>
+                </div>
+            </div>
         </>
     )
 }
 
-export default StudentCardComponent
+export default CourseCardComponent
