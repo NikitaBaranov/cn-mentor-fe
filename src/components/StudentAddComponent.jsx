@@ -5,6 +5,8 @@ const StudentAddComponent = ({getAllStudents}) => {
     const [add, setAdd] = useState(false)
     const [studentId, setStudentId] = useState("")
     const [studentName, setStudentName] = useState("")
+    const [start, setStart] = useState("")
+    const [end, setEnd] = useState("")
 
     return (
         <div className={"card border-success m-2"}>
@@ -34,6 +36,28 @@ const StudentAddComponent = ({getAllStudents}) => {
                                     placeholder="Name"
                                     value={studentName}
                                     onChange={e => setStudentName(e.target.value)}
+                                />
+                            </div>
+                        </div>
+                        <div className="col-12">
+                            <div className="input-group">
+                                <input
+                                    className="form-control m-1"
+                                    type="text"
+                                    placeholder="Start"
+                                    value={start}
+                                    onChange={e => setStart(e.target.value)}
+                                />
+                            </div>
+                        </div>
+                        <div className="col-12">
+                            <div className="input-group">
+                                <input
+                                    className="form-control m-1"
+                                    type="text"
+                                    placeholder="End"
+                                    value={end}
+                                    onChange={e => setEnd(e.target.value)}
                                 />
                             </div>
                         </div>

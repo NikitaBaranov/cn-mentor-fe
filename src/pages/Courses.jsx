@@ -8,7 +8,9 @@ const Courses = ({courses, getAllCourses}) => {
             {Object.keys(courses).map(course => (
                     <CourseCardComponent
                         key={course}
-                        course={courses[course]}/>
+                        course={courses[course]}
+                        getAllCourses={getAllCourses}
+                    />
                 )
             )}
             <CourseAddComponent getAllCourses={getAllCourses}/>
