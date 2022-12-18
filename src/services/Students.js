@@ -1,6 +1,8 @@
+import {backendUrl} from "./Utils";
+
 export const updateStudents = (onSuccess, onError) => {
     console.log("updateAll", "start");
-    fetch("http://localhost:8080/students/update")
+    fetch(`${backendUrl()}/students/update`)
         .then((res) => res.json())
         .then((students) => {
             console.log("updateAll", "done")
@@ -13,7 +15,7 @@ export const updateStudents = (onSuccess, onError) => {
 
 export const getStudents = (onSuccess, onError) => {
     console.log("getAllStudents", "start");
-    fetch("http://localhost:8080/students")
+    fetch(`${backendUrl()}/students`)
         .then((res) => res.json())
         .then((students) => {
             console.log("getAllStudents", "end");
@@ -26,7 +28,7 @@ export const getStudents = (onSuccess, onError) => {
 
 export const getStudentGithubEvents = (studentId, onSuccess, onError) => {
     console.log("getStudentGithubEvents", "start");
-    fetch(`http://localhost:8080/students/${studentId}/gitHubEvents`)
+    fetch(`${backendUrl()}/students/${studentId}/gitHubEvents`)
         .then((res) => res.json())
         .then((events) => {
             console.log("getStudentGithubEvents", "end");
@@ -40,7 +42,7 @@ export const getStudentGithubEvents = (studentId, onSuccess, onError) => {
 export const addStudent = (student, onSuccess, onError) => {
     console.log(student)
     console.log("addStudent", "start");
-    fetch("http://localhost:8080/students",
+    fetch(`${backendUrl()}/students`,
         {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
@@ -66,7 +68,7 @@ export const addStudent = (student, onSuccess, onError) => {
 
 export const editStudent = (student, onSuccess, onError) => {
     console.log("editStudent", "start");
-    fetch("http://localhost:8080/students",
+    fetch(`${backendUrl()}/students`,
         {
             method: 'PUT', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
@@ -92,7 +94,7 @@ export const editStudent = (student, onSuccess, onError) => {
 
 export const deleteStudent = (studentId, onSuccess, onError) => {
     console.log("deleteStudent", "start");
-    fetch("http://localhost:8080/students/" + studentId,
+    fetch(`${backendUrl()}/students/${studentId}`,
         {
             method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin

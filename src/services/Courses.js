@@ -1,6 +1,8 @@
+import {backendUrl} from "./Utils";
+
 export const getCourses = (onSuccess, onError) => {
     console.log("getcourses", "start");
-    fetch("http://localhost:8080/courses")
+    fetch(`${backendUrl()}/courses`)
         .then((res) => res.json())
         .then((courses) => {
             const coursesMap = {}
@@ -15,7 +17,7 @@ export const getCourses = (onSuccess, onError) => {
 
 export const addCourse = (courseId, courseName, onSuccess, onError) => {
     console.log("addCourse", "start");
-    fetch("http://localhost:8080/courses",
+    fetch(`${backendUrl()}/courses`,
         {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
@@ -46,7 +48,7 @@ export const addCourse = (courseId, courseName, onSuccess, onError) => {
 
 export const deleteCourse = (courseId, onSuccess, onError) => {
     console.log("deleteCourse", "start");
-    fetch("http://localhost:8080/courses/" + courseId,
+    fetch(`${backendUrl()}/courses/${courseId}`,
         {
             method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin

@@ -1,6 +1,8 @@
+import {backendUrl} from "./Utils";
+
 export const getGitHubUser = (user, onSuccess, onError) => {
     console.log("getGitHubUser", "start");
-    fetch(`http://localhost:8080/gh/${user}`)
+    fetch(`${backendUrl()}/gh/${user}`)
         .then((res) => res.json())
         .then((gitHubUser) => {
             console.log("getGitHubUser", "done")
@@ -13,7 +15,7 @@ export const getGitHubUser = (user, onSuccess, onError) => {
 
 export const getGitHubRepos = (user, onSuccess, onError) => {
     console.log("getGitHubRepos", "start");
-    fetch(`http://localhost:8080/gh/${user}/repos`)
+    fetch(`${backendUrl()}/gh/${user}/repos`)
         .then((res) => res.json())
         .then((gitHubRepos) => {
             console.log("getGitHubRepos", "done")
@@ -26,7 +28,7 @@ export const getGitHubRepos = (user, onSuccess, onError) => {
 
 export const getGitHubEvents = (gitHubUserId, onSuccess, onError) => {
     console.log("getGitHubEvents", "start");
-    fetch(`http://localhost:8080/gh/${gitHubUserId}/events`)
+    fetch(`${backendUrl()}/gh/${gitHubUserId}/events`)
         .then((res) => res.json())
         .then((gitHubRepos) => {
             console.log("getGitHubEvents", "done")
@@ -39,7 +41,7 @@ export const getGitHubEvents = (gitHubUserId, onSuccess, onError) => {
 
 export const getGitHubRepoEvents = (gitHubUserId, gitHubRepoId, onSuccess, onError) => {
     console.log("getGitHubEvents", "start");
-    fetch(`http://localhost:8080/gh/${gitHubUserId}/repo/${gitHubRepoId}/events`)
+    fetch(`${backendUrl()}/gh/${gitHubUserId}/repo/${gitHubRepoId}/events`)
         .then((res) => res.json())
         .then((gitHubRepos) => {
             console.log("getGitHubEvents", "done")
