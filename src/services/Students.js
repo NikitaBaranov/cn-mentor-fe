@@ -24,7 +24,21 @@ export const getStudents = (onSuccess, onError) => {
         })
 }
 
-export const addStudent = (studentId, studentName, onSuccess, onError) => {
+export const getStudentGithubEvents = (studentId, onSuccess, onError) => {
+    console.log("getStudentGithubEvents", "start");
+    fetch(`http://localhost:8080/students/${studentId}/gitHubEvents`)
+        .then((res) => res.json())
+        .then((events) => {
+            console.log("getStudentGithubEvents", "end");
+            onSuccess(events)
+        })
+        .catch(e => {
+            onError(e)
+        })
+}
+
+export const addStudent = (student, onSuccess, onError) => {
+    console.log(student)
     console.log("addStudent", "start");
     fetch("http://localhost:8080/students",
         {
@@ -38,17 +52,38 @@ export const addStudent = (studentId, studentName, onSuccess, onError) => {
             },
             // redirect: 'follow', // manual, *follow, error
             // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-            body: JSON.stringify([
-                {
-                    "id": studentId,
-                    "name": studentName
-                }
-            ]) // body data type must match "Content-Type" header
+            body: JSON.stringify(student) // body data type must match "Content-Type" header
         })
         .then((res) => res.json())
         .then((students) => {
             console.log("addStudent", "end");
             onSuccess(students)
+        })
+        .catch(e => {
+            onError(e)
+        })
+}
+
+export const editStudent = (student, onSuccess, onError) => {
+    console.log("editStudent", "start");
+    fetch("http://localhost:8080/students",
+        {
+            method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            // credentials: 'same-origin', // include, *same-origin, omit
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            // redirect: 'follow', // manual, *follow, error
+            // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: JSON.stringify(student) // body data type must match "Content-Type" header
+        })
+        .then((res) => res.json())
+        .then((student) => {
+            console.log("editStudent", "end");
+            onSuccess(student)
         })
         .catch(e => {
             onError(e)

@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {addStudent} from "../services/Students";
 import {addCourse} from "../services/Courses";
 
 const CourseAddComponent = ({getAllCourses}) => {

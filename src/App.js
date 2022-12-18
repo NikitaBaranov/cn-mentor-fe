@@ -29,6 +29,7 @@ const App = () => {
     const getAllStudents = () => {
         setIsLoading(true)
         getStudents((students) => {
+                console.log(students);
                 setStudents(students)
                 setIsLoading(false)
             },

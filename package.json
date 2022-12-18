@@ -8,6 +8,8 @@
     "bootswatch": "^5.1.3",
     "cra-template": "1.1.3",
     "eslint-config-react-app": "^7.0.1",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.39",
     "mongodb": "^4.5.0",
     "react": "^18.0.0",
     "react-bootstrap": "^2.2.3",
