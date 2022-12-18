@@ -160,9 +160,11 @@ const StudentCardComponent = ({student, getAllStudents}) => {
                                 </a>
                             </div>
                             <div className="card-body">
+                                { student.gitHubUser && (
                                 <div className="m-2">
                                     <GigHubActivityComponent gitHubUserId={student.gitHubUser.id} daysToShow={70}/>
                                 </div>
+                                )}
                                 {student.gitHubRepos ?
                                     student.gitHubRepos
                                         .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))

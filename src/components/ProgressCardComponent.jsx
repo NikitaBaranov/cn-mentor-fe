@@ -13,10 +13,11 @@ const ProgressCardComponent = ({student, courses}) => {
                 </a>
             </div>
 
-            <div className="card-subtitle m-2">
-                <GigHubActivityComponent gitHubUserId={student.gitHubUser.id} daysToShow={70}/>
-            </div>
-
+            { student.gitHubUser && (
+                <div className="card-subtitle m-2">
+                    <GigHubActivityComponent gitHubUserId={student.gitHubUser.id} daysToShow={70}/>
+                </div>
+            )}
             <table className="table table-hover">
                 <tbody>
                 {student.coursesProgress && Object.keys(student.coursesProgress).map(courseProgress => (
