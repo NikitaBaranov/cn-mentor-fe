@@ -3,7 +3,7 @@ import {FaGithub, FaTrashAlt, FaUserEdit} from "react-icons/fa";
 import {deleteStudent, editStudent} from "../services/Students";
 import {IconContext} from "react-icons";
 import GigHubActivityComponent from "./GitHubActivityComponents";
-import GitHubRepoCardComponent from "./GitHubRepoCardComponent";
+import GitHubRepoRowComponent from "./GitHubRepoRowComponent";
 
 const StudentCardComponent = ({student, getAllStudents}) => {
 
@@ -125,7 +125,7 @@ const StudentCardComponent = ({student, getAllStudents}) => {
                     :
                     (
                         <>
-                            <div className="card-header text-success aParent">
+                            <div className="card-header text-success aParent" id={s.id} name={s.id}>
                                 <a href={`https://platform.codingnomads.co/learn/user/profile.php?id=${s.id}`}
                                    target="_blank"
                                    className={"card-link"} rel="noreferrer">
@@ -160,18 +160,24 @@ const StudentCardComponent = ({student, getAllStudents}) => {
                                 </a>
                             </div>
                             <div className="card-body">
-                                { student.gitHubUser && (
-                                <div className="m-2">
-                                    <GigHubActivityComponent gitHubUserId={student.gitHubUser.id} daysToShow={70}/>
-                                </div>
+                                {student.gitHubUser && (
+                                    <div className="m-2">
+                                        <GigHubActivityComponent gitHubUserId={student.gitHubUser.id} daysToShow={60}/>
+                                    </div>
                                 )}
                                 {student.gitHubRepos ?
-                                    student.gitHubRepos
-                                        .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
-                                        .map(repo => (
-                                            <GitHubRepoCardComponent gitHubUserId={student.gitHubUser.id}
-                                                                     gitHubRepo={repo}/>
-                                        ))
+                                    <table className="table table-hover">
+                                        <tbody>
+                                        {
+                                            student.gitHubRepos
+                                                .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
+                                                .map(repo => (
+                                                    <GitHubRepoRowComponent key={repo.id} gitHubUserId={student.gitHubUser.id}
+                                                                            gitHubRepo={repo}/>
+                                                ))
+                                        }
+                                        </tbody>
+                                    </table>
                                     :
                                     <></>
                                 }

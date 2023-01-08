@@ -4,20 +4,16 @@ import GigHubActivityComponent from "./GitHubActivityComponents";
 
 const ProgressCardComponent = ({student, courses}) => {
 
-    return (
-        <div key={student.id} className={"card border-primary m-2"}>
+    return (<div key={student.id} className={"card border-primary m-2"}>
             <div className="card-header text-primary">
-                <a href={`https://platform.codingnomads.co/learn/user/profile.php?id=${student.id}`}
-                   target="_blank" rel="noreferrer">
+                <a href={`/students?id=${student.id}`}>
                     {student.name} ({student.id})
                 </a>
             </div>
 
-            { student.gitHubUser && (
-                <div className="card-subtitle m-2">
+            {student.gitHubUser && (<div className="card-subtitle m-2">
                     <GigHubActivityComponent gitHubUserId={student.gitHubUser.id} daysToShow={70}/>
-                </div>
-            )}
+                </div>)}
             <table className="table table-hover">
                 <tbody>
                 {student.coursesProgress && Object.keys(student.coursesProgress).map(courseProgress => (
@@ -38,8 +34,7 @@ const ProgressCardComponent = ({student, courses}) => {
                     </tr>))}
                 </tbody>
             </table>
-        </div>
-    )
+        </div>)
 }
 
 export default ProgressCardComponent

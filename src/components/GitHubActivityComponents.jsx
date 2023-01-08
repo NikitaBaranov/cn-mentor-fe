@@ -25,11 +25,11 @@ const GigHubActivityComponent = ({gitHubUserId, gitHubRepoId, daysToShow}) => {
                 gitHubUserId,
                 gitHubRepoId,
                 (events) => {
-                    console.log(events);
+                    // console.log(events);
                     setEvents(events);
                 },
                 (error) => {
-                    console.log(error);
+                    // console.log(error);
                 }
             )
             return
@@ -38,17 +38,17 @@ const GigHubActivityComponent = ({gitHubUserId, gitHubRepoId, daysToShow}) => {
         getGitHubEvents(
             gitHubUserId,
             (events) => {
-                console.log(events);
+                // console.log(events);
                 setEvents(events);
             },
             (error) => {
-                console.log(error);
+                // console.log(error);
             }
         )
     }
 
     const computeActivities = () => {
-        console.log(events)
+        // console.log(events)
         const temp = {};
 
         if (events) {
