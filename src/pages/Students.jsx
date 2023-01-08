@@ -14,10 +14,11 @@ const Students = ({students, getAllStudents}) => {
     }, [students])
 
     return (<>
-        {students.length > 0 && students.map(student => (<StudentCardComponent
-            key={student.id}
-            student={student}
-            getAllStudents={getAllStudents}/>))}
+        {students.length > 0 && students.map(student => (
+            <StudentCardComponent
+                key={student.id}
+                student={student}
+                getAllStudents={getAllStudents}/>))}
         <StudentAddComponent getAllStudents={getAllStudents}/>
     </>)
 }
